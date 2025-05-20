@@ -15,8 +15,8 @@ jobs:
           - name: Checkout submodules
             run: git submodule update --init --recursive
 
-          - name: Clear Buildroot package cache (if needed)
-            run: rm -rf /github/home/.dl/pkgconf
+          - name: Clear Buildroot download Dir
+            run: rm -rf buildroot/dl
 
           - uses: webfactory/ssh-agent@v0.5.3
             with:
@@ -25,6 +25,7 @@ jobs:
             env:
               GIT_SSH_COMMAND: "ssh -o StrictHostKeyChecking=no"
               FORCE_UNSAFE_CONFIGURE: 1 #added this line
+              BR2_PRIMARY_SITE: "https://buildroot.org/downloads/sources/"
             run: ./full-test.sh
           - name: Cleanup
             if: always()
