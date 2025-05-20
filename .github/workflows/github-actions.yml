@@ -16,8 +16,7 @@ jobs:
             run: git submodule update --init --recursive
 
           - name: Clear Buildroot package cache (if needed)
-            run: |
-            rm -rf /github/home/.dl/pkgconf
+            run: rm -rf /github/home/.dl/pkgconf
 
           - uses: webfactory/ssh-agent@v0.5.3
             with:
